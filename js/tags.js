@@ -43,8 +43,8 @@
 	OC.Tags= {};
 	
 	OC.Tags.Client= {
-		applyTags: function(fileData, tags) {
-			var encodedPath = OC.encodePath(fileData.name);
+		applyTags: function(fileData, fileList, tags) {
+			var encodedPath = OC.encodePath(fileList.getCurrentDirectory() + '/' + fileData.name);
 			while (encodedPath[0] === '/') {
 				encodedPath = encodedPath.substr(1);
 			}
@@ -63,7 +63,7 @@
 	};
 	
 	OC.Tags.UI= {
-		render: function(fileData, $row) {
+		render: function(fileList, fileData, $row) {
 			var tags= fileData.tags || [];
  			tags= _.without(tags, OC.TAG_FAVORITE);
 			tags= tags.sort();
@@ -75,8 +75,8 @@
 				var $tag= $(event.target).closest(".tag");
 				var tag= $tag.find(".tag-content").text();
 				var newTags= _.without(fileData.tags, tag);
-				OC.Tags.Client.applyTags(fileData, newTags).then(function(result){
-					OC.Tags.UI.render(fileData, $row);
+				OC.Tags.Client.applyTags(fileData, fileList, newTags).then(function(result){
+					OC.Tags.UI.render(fileList, fileData, $row);
 				});
 			});
 			$row.find(".tags").html(html);
@@ -104,9 +104,9 @@
 				tags= tags.concat(fileData.tags || []);
 				tags= _.uniq(tags);
 				
-				OC.Tags.Client.applyTags(fileData, tags).then(function(result) {
+				OC.Tags.Client.applyTags(fileData, context.fileList, tags).then(function(result) {
 					OC.Tags.UI._closeDropdown(dropdown, context);
-					OC.Tags.UI.render(fileData, context.$file);
+					OC.Tags.UI.render(context.fileList, fileData, context.$file);
 				});
 			};
 			dropdown.ui.input.on("keypress", function(event) {
@@ -164,7 +164,7 @@
 			fileList._createRow= function(fileData) {
 				var $row= oldCreateRow.apply(this, arguments);
 				$row.find(".filename").append(OC.Tags.UI.placeholder());
-				OC.Tags.UI.render(fileData, $row);
+				OC.Tags.UI.render(fileList, fileData, $row);
 				return $row;
 			};
 		},
