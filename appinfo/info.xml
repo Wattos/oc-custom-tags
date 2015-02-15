@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<info>
+    <id>oc-custom-tags</id>
+    <name>Tags</name>
+    <description>App which adds the ability to label files with custom tags</description>
+    <licence>AGPL</licence>
+    <author>Filip Wieladek</author>
+    <version>0.0.1</version>
+    <namespace>Tags</namespace>
+    <category>other</category>
+    <dependencies>
+        <owncloud min-version="8" />
+    </dependencies>
+</info>

@@ -1,0 +1,58 @@
+.tags {
+	position: absolute;
+	left: 105px;
+	bottom: 0px;
+	font-size: xx-small;
+}
+
+.tags .tag {
+	position: relative;
+}
+
+.tags .tag {
+	padding: 0px 4px;
+	background: #0089e0;
+	color: #fff;
+	border-radius: 2px;
+}
+
+.tags .tag:not(:first-child) {
+	margin-left: 5px;
+}
+
+.tags .tag .tag-actions {
+	margin: 0px;
+	vertical-align: middle;
+}
+
+.tags .tag .tag-actions .tag-action {
+	height: 9px;
+	margin-left: 5px;
+	cursor: pointer;
+	opacity: 0.4;
+}
+
+.tags .tag .tag-actions .tag-action:hover {
+	opacity: 1;
+}
+
+.tags-dropdown {
+	background: #eee;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	box-shadow: 0 1px 1px #777;
+	margin-right: 0;
+	position: absolute;
+	right: 0;
+	width: 420px;
+	z-index: 500;
+	padding: 16px;
+}
+
+.tags-dropdown .tags-dropdown-search {
+	display: flex;
+}
+
+.tags-dropdown .tags-dropdown-search .tags-input-text {
+	flex-grow: 2;
+}
